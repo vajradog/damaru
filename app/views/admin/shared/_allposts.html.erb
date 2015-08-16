@@ -1,0 +1,69 @@
+  <div class="nav-tabs-custom">
+
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_1" data-toggle="tab">Draft Posts (<%= @posts.draft.count %>)</a></li>
+            <li><a href="#tab_2" data-toggle="tab">Published Posts (<%= @posts.published.count %>)</a></li>
+          </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+
+            <div class="box">
+              <div class="box-body no-padding">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Created at</th>
+                    <th>Edit/Publish</th>
+                    <th>Delete</th>
+                  </tr>
+                  <% @posts.draft.each do |post| %>
+                    <tr>
+                      <td><%= post.title %></td>
+                      <td><%= post.user.display_name %></td>
+                      <td><%= fix_date(post.created_at) %></td>
+
+                      <% if !current_user.contributor? %>
+                        <td><%= link_to "Edit and publish", edit_admin_post_path(post), class: "btn btn-block btn-success btn-xs" %>
+                        <td><%= link_to "Delete", [:admin, post], method: :delete, data: { confirm: 'Are you sure ?' }, class: "btn btn-block btn-danger btn-xs" %></td>
+                      <% else %>
+                        <td data-label="Action"><%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-block btn-success btn-xs" %></td>
+                      <% end %>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+          </div>
+                  <div class="tab-pane" id="tab_2">
+                    <!-- draft posts section -->
+                    <div class="box">
+                <div class="box-body no-padding">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>Created at</th>
+                      <th>Edit/Unpublish</th>
+                      <th>Delete</th>
+                    </tr>
+                    <% @posts.published.each do |post| %>
+                    <tr>
+                      <td><%= link_to post.title, post %></td>
+                      <td><%= post.user.display_name %></td>
+                       <td><%= fix_date(post.created_at) %></td>
+                      <% if !current_user.contributor? %>
+                        <td><%= link_to "Edit or unpublish", edit_admin_post_path(post), class: "btn btn-block btn-warning btn-xs" %>
+                        <td><%= link_to "Delete", [:admin, post], method: :delete, data: { confirm: 'Are you sure ?' }, class: "btn btn-block btn-danger btn-xs" %></td>
+                      <% else %>
+                        <td><%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-block btn-primary btn-xs" %></td>
+                      <% end %>
+                    </tr>
+                    <% end %>
+                  </table>
+                </div>
+              </div><!-- draft posts section ends -->
+            </div><!-- /.tab-pane -->
+          </div><!-- /.tab-content -->
+        </div><!-- nav-tabs-custom -->

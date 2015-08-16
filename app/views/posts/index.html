@@ -1,0 +1,17 @@
+<% @posts.published.each do |post|%>
+  <section id="wrapper" class="group">
+    <%= image_tag 'line.png'%>
+    <article class="post">
+      <header>
+        <h2 class="headline"><%=link_to post.title, post %></a></h2>
+        <p class="meta"><% if mins_count(post) == 0 %>Less than a minute read<% else %><%= pluralize(mins_count(post), 'minute')%> read<% end %>. <%= post.user.display_name %> wrote this on <%= fix_date(post.created_at)%></p>
+      </header>
+
+      <section id="post-body">
+        <%=raw post.body %>
+      </section>
+      <hr>
+    </article>
+  </section>
+<% end %>
+

@@ -1,0 +1,59 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <% if @page.new_record? %>
+         New Page
+       <% else %>
+         Edit Page</strong>
+       <% end %>
+    </h1>
+  </section>
+
+  <section class="content">
+
+    <div class='row'>
+      <div class='col-md-12'>
+        <div class='box box-info'>
+
+          <div class='box-header'>
+            <% if @page.errors.any? %>
+              <p>Please check the following</p>
+              <ul><% @page.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            <% end %>
+          </div>
+
+          <div class='box-body pad'>
+            <%= form_for [:admin, @page] do |f| %>
+              <div class="form-group">
+                <label>Title</label>
+                <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
+              </div>
+              <%= f.cktext_area :body  %>
+          </div>
+
+          <div class="box-footer clearfix">
+            <% if @page.new_record? %>
+              <%= f.submit "Save Page", name: "draft_button", class: "btn btn-primary btn-flat" %> <br><br>
+              <%= f.submit "Publish Now", name: "publish_button", class: "btn btn-success btn-flat" %>
+
+            <% elsif @page.published? %>
+              <%= f.submit "Update Page", class: "btn btn-primary btn-flat" %> <br><br>
+
+              <%= f.submit "Unpublish and move to draft", name: "draft_button", class: "btn btn-success btn-flat" %>
+            <% else %>
+              <%= f.submit "Update Page", class: "btn btn-primary btn-flat" %> <br><br>
+
+              <%= f.submit "Publish Now", name: "publish_button", class: "btn btn-success btn-flat" %>
+            <% end %>
+          </div>
+            <% end %>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

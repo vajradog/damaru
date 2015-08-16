@@ -1,0 +1,82 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+     All Pages
+    </h1>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-md-8">
+
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_1" data-toggle="tab">Draft Pages (<%= @pages.draft.count %>)</a></li>
+            <li><a href="#tab_2" data-toggle="tab">Published Pages (<%= @pages.published.count %>)</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_1">
+
+                    <!-- draft pages section -->
+              <div class="box">
+                <div class="box-body no-padding">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>Title</th>
+                      <th>Created at</th>
+                      <th>Edit/Publish</th>
+                      <th>Delete</th>
+                    </tr>
+
+                    <% @pages.draft.each do |page| %>
+                    <tr>
+                      <td><%= page.title %></td>
+                       <td><%= fix_date(page.created_at) %></td>
+                       <% if !current_user.contributor? %>
+                      <td><%= link_to "Edit and publish", edit_admin_page_path(page), class: "btn btn-block btn-success btn-xs" %>
+                      <td><%= link_to "Delete", [:admin, page], method: :delete, data: { confirm: 'Are you sure ?' }, class: "btn btn-block btn-danger btn-xs" %></td>
+                    <% else %>
+                       <td data-label="Action"><%= link_to "Edit", edit_admin_page_path(page), class: "btn btn-block btn-success btn-xs" %></td>
+                     <% end %>
+                    </tr>
+                    <% end %>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="tab_2">
+              <div class="box">
+                <div class="box-body no-padding">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>Title</th>
+                      <th>Created at</th>
+                      <th>Edit/Unpublish</th>
+                      <th>Delete</th>
+                    </tr>
+                    <% @pages.published.each do |page| %>
+                    <tr>
+                      <td><%= link_to page.title, page %></td>
+                      <td><%= fix_date(page.created_at) %></td>
+                      <% if !current_user.contributor? %>
+                        <td><%= link_to "Edit or unpublish", edit_admin_page_path(page), class: "btn btn-block btn-warning btn-xs" %>
+                        <td><%= link_to "Delete", [:admin, page], method: :delete, data: { confirm: 'Are you sure ?' }, class: "btn btn-block btn-danger btn-xs" %></td>
+                      <% else %>
+                        <td><%= link_to "Edit", edit_admin_page_path(page), class: "btn btn-block btn-primary btn-xs" %></td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

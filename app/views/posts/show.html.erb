@@ -1,0 +1,15 @@
+<section id="wrapper" class="group">
+  <%= image_tag 'line.png'%>
+  <article class="post">
+    <header>
+      <h2 class="headline"><%= @post.title %></a></h2>
+      <p class="meta"><%= link_to @post.user.display_name, admin_user_path(@post.user) %> wrote this on <%= fix_date(@post.created_at)%></p>
+    </header>
+
+    <section id="post-body">
+      <%=raw @post.body %>
+    </section>
+    <hr>
+  </article>
+</section>
+

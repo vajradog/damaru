@@ -1,0 +1,102 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Users
+    </h1>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <section class="col-lg-5">
+
+        <div class="box box-danger">
+
+          <div class="box-header with-border">
+            <h3 class="box-title">Admins</h3>
+          </div>
+          <div class="box-body no-padding">
+            <ul class="users-list clearfix">
+
+              <% @users.admin.each do |user| %>
+              <li>
+               <%= gravatar user %>
+                <a class="users-list-name" href="#"><%= link_to user.display_name, admin_user_path(user) %></a>
+                <span class="users-list-date"><%= link_to "Change user role", edit_admin_user_path(user) %></span>
+              </li>
+              <% end %>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">Authors</h3>
+          </div>
+
+          <div class="box-body no-padding">
+            <ul class="users-list clearfix">
+              <% if @users.author.count == 0 %>
+                <span>You do not have any authors yet.</span>
+              <% else %>
+                <% @users.author.each do |user| %>
+                <li>
+                  <%= gravatar user %>
+                  <a class="users-list-name" href="#"><%= link_to user.display_name, admin_user_path(user) %></a>
+                  <span class="users-list-date"><%= link_to "Change user role", edit_admin_user_path(user) %></span>
+                </li>
+              <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="col-lg-5">
+        <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">Editors</h3>
+          </div>
+
+          <div class="box-body no-padding">
+            <ul class="users-list clearfix">
+              <% if @users.editor.count == 0 %>
+                <span>You do not have any editors yet.</span>
+              <% else %>
+                <% @users.editor.each do |user| %>
+                <li>
+                  <%= gravatar user %>
+                  <a class="users-list-name" href="#"><%= link_to user.display_name, admin_user_path(user) %></a>
+                  <span class="users-list-date"><%= link_to "Change user role", edit_admin_user_path(user) %></span>
+                </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">Contributors</h3>
+          </div>
+
+          <div class="box-body no-padding">
+            <ul class="users-list clearfix">
+              <% if @users.contributor.count == 0 %>
+                <span>You do not have any contributors yet.</span>
+              <% else %>
+                <% @users.contributor.each do |user| %>
+                  <li>
+                    <%= gravatar user %>
+                    <a class="users-list-name" href="#"><%= link_to user.display_name, admin_user_path(user) %></a>
+                    <span class="users-list-date"><%= link_to "Change user role", edit_admin_user_path(user) %></span>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </section>
+</div>

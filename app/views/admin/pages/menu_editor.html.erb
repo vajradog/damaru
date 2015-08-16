@@ -1,0 +1,77 @@
+<h1 class="content-subhead">Manage side menus (<%= @pages.header.count%>)</h1>
+<table class="pure-table">
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Title</th>
+      <th>Menu Position</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.published.header.each do |page| %>
+    <tr class="pure-table-odd">
+      <td data-label="Title">1</td>
+      <td data-label="Title"><%= link_to page.title, page %></td>
+      <td data-label="Created"><%= page.nav %></td>
+      <% if !current_user.contributor? %>
+      <td data-label="Action"><%= link_to "Edit and publish", edit_admin_page_path(page) %> | <%= link_to "Delete", [:admin, page], method: :delete, data: { confirm: 'Are you sure ?' } %></td>
+      <% else %>
+       <td data-label="Action"><%= link_to "Edit", edit_admin_page_path(page), class: "post-category post-category-pure" %></td>
+       <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table><br>
+
+<%= link_to "Create a new page", new_admin_page_path, class: "button-success pure-button" %><br><br>
+
+<h1 class="content-subhead">Manage footer menus (<%= @pages.footer.count%>)</h1>
+<table class="pure-table">
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Title</th>
+      <th>Menu position</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.published.footer.each do |page| %>
+    <tr class="pure-table-odd">
+      <td data-label="Title">2</td>
+      <td data-label="Title"><%= link_to page.title, page %></td>
+      <td data-label="Created"><%= page.nav %></td>
+      <% if !current_user.contributor? %>
+      <td data-label="Action"><%= link_to "Edit and unpublish", edit_admin_page_path(page) %> | <%= link_to "Delete", [:admin, page], method: :delete, data: { confirm: 'Are you sure ?' } %></td>
+      <% else %>
+       <td data-label="Action"><%= link_to "Edit", edit_admin_page_path(page), class: "post-category post-category-pure" %></td>
+       <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table><br>
+
+<h1 class="content-subhead">Unassigned (<%= @pages.menu_undefined.count%>)</h1>
+<table class="pure-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Menu position</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.menu_undefined.each do |page| %>
+    <tr class="pure-table-odd">
+      <td data-label="Title"><%= link_to page.title, page %></td>
+      <td data-label="Created"><%= page.nav %></td>
+      <% if !current_user.contributor? %>
+      <td data-label="Action"><%= link_to "Edit and unpublish", edit_admin_page_path(page) %> | <%= link_to "Delete", [:admin, page], method: :delete, data: { confirm: 'Are you sure ?' } %></td>
+      <% else %>
+       <td data-label="Action"><%= link_to "Edit", edit_admin_page_path(page), class: "post-category post-category-pure" %></td>
+       <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table><br>

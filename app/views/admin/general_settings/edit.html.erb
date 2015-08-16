@@ -1,0 +1,40 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>Edit General Settings</h1>
+  </section>
+
+  <section class="content">
+    <div class='row'>
+      <div class='col-md-12'>
+        <div class='box box-info'>
+          <div class='box-header'>
+            <% if @general_setting.errors.any? %>
+              <p>Please check the following</p>
+              <ul><% @general_setting.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            <% end %>
+          </div>
+
+          <div class='box-body pad'>
+            <%= form_for [:admin, @general_setting] do |f| %>
+            <div class="form-group">
+              <label>Title: </label>
+              <%= f.text_field :title, placeholder: "Website Title" %> <br>
+              <label>Header: </label>
+              <%= f.text_field :header, placeholder: "Header" %><br>
+              <label>Sub Header: </label>
+              <%= f.text_field :subheader, placeholder: "Sub-header" %><br>
+            </div>
+          </div>
+          <div class="box-footer clearfix">
+              <%= f.submit class: "btn btn-success btn-flat" %>
+          </div>
+            <% end %>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,57 @@
+
+<section id="wrapper" class="group">
+<% if current_user %>
+<div class="col-lg-6 col-xs-6">
+  <div class="small-box bg-yellow">
+    <div class="inner">
+      <h3><%= @user.role %></h3>
+      <p><%= @user.display_name %></p>
+    </div>
+    <div class="icon">
+      <i class="ion-person-stalker"></i>
+    </div>
+    <%= link_to " Edit Profile ", admin_users_path, class: "small-box-footer fa fa-arrow-circle-right" %>
+  </div>
+</div>
+
+<div class="col-lg-3 col-xs-3">
+  <div class="small-box bg-aqua">
+    <div class="inner">
+      <h3><%= @user.posts.published.count %></h3>
+      <p>Published Posts</p>
+    </div>
+
+
+      <%= link_to " Manage Posts ", admin_posts_path, class: "small-box-footer fa fa-arrow-circle-right" %>
+  </div>
+</div>
+
+<div class="col-lg-3 col-xs-3">
+  <div class="small-box bg-aqua">
+    <div class="inner">
+      <h3><%= @user.posts.draft.count %></h3>
+      <p>Draft Posts</p>
+    </div>
+
+
+      <%= link_to " Manage Posts ", admin_posts_path, class: "small-box-footer fa fa-arrow-circle-right" %>
+  </div>
+</div>
+<% end %>
+
+  <article class="post">
+    <header>
+      <h2><%= @user.display_name %>'s posts</h2>
+      <% @user.posts.published.each do |post| %>
+       <%= image_tag 'line.png'%>
+      <h2 class="headline"><%= post.title %></a></h2>
+      <p class="meta"><%= @user.display_name %> wrote this on <%= fix_date(post.created_at)%></p>
+    </header>
+
+    <section id="post-body">
+      <%=raw post.body %>
+    </section>
+    <hr>
+    <% end %>
+  </article>
+</section>
