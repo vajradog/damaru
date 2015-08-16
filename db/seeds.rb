@@ -1,7 +1,7 @@
 User.create(
   email: "admin@damaru.com",
   display_name: "Admin",
-  password: "admin",
+  password: "damaruadmin",
   role: "admin"
   )
 
