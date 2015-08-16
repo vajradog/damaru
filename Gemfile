@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.2'
 
 gem 'rails', '4.2.0'
 gem 'pg'
@@ -14,6 +15,7 @@ gem 'figaro'
 gem 'cancancan', '~> 1.10'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem "passenger"
+gem 'rails_12factor'
 
 
 group :development, :test do
