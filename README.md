@@ -1,6 +1,6 @@
 Originally created as my personal blog management software, Damaru is a full fledged CMS built upon Ruby on Rails.
 
-More details and documentation will be added soon.
+More details and documentation will be added soon. Please check back soon or fork the project and try on your own.
 
 Circle CI Staging: [![Circle CI](https://circleci.com/gh/vajradog/damaru/tree/staging.svg?style=svg)](https://circleci.com/gh/vajradog/damaru/tree/staging)
 
