@@ -1,0 +1,19 @@
+machine:
+  ruby:
+    version: 2.2.2
+deployment:
+  production:
+    branch: master
+    commands:
+      - heroku maintenance:on --app damaru
+      - heroku pg:backups capture --app damaru
+      - git push git@heroku.com:damaru.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app damaru
+      - heroku maintenance:off --app damaru
+  staging:
+    branch: staging
+    commands:
+      - heroku maintenance:on --app damaru-staging
+      - git push git@heroku.com:damaru-staging.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app damaru-staging
+      - heroku maintenance:off --app damaru-staging
