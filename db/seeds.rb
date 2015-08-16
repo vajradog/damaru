@@ -1,4 +1,4 @@
-User.create(
+user1 = User.create(
   email: "admin@damaru.com",
   display_name: "Default Admin",
   password: "admin",
