@@ -16,6 +16,7 @@ gem 'cancancan', '~> 1.10'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem "passenger"
 gem 'rails_12factor'
+gem 'pjax_rails'
 
 
 group :development, :test do

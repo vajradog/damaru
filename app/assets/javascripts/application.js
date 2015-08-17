@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require ckeditor/init
 //= require_tree ./ckeditor
+//=require jquery.pjax
 
