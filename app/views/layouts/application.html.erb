@@ -13,11 +13,13 @@
     <link href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div class="wrapper">
-      <%= render 'layouts/header'%>
-      <%= render 'layouts/sidenav' %>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
+    <div data-pjax-container>
+      <div class="wrapper">
+        <%= render 'layouts/header'%>
+        <%= render 'layouts/sidenav' %>
+        <%= yield %>
+        <%= render 'layouts/footer' %>
+      </div>
     </div>
 
     <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
